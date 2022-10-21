@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SawWave.mp3-f51a08b281390ea43ccc6ba51d47381f.mp3str"
+
+[deps]
+
+source_file="res://Audio/SawWave.mp3"
+dest_files=[ "res://.import/SawWave.mp3-f51a08b281390ea43ccc6ba51d47381f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

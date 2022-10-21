@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SineWave.mp3-fae08c201b00a03c61df4970957ec54a.mp3str"
+
+[deps]
+
+source_file="res://Audio/SineWave.mp3"
+dest_files=[ "res://.import/SineWave.mp3-fae08c201b00a03c61df4970957ec54a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

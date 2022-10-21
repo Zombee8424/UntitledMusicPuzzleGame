@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Other/BeaterSpawn.gd" type="Script" id=1]
+
+[node name="BeaterSpawn" type="RigidBody2D" groups=["Entities"]]
+mode = 3
+script = ExtResource( 1 )
+beater_path = "res://Scenes/Other/Beater.tscn"
+
+[node name="Sprite" type="Polygon2D" parent="."]
+scale = Vector2( 1, 0.75 )
+color = Color( 0.333333, 0.333333, 0.333333, 1 )
+polygon = PoolVector2Array( -24, -32, 24, -32, 24, 0.067688, 24, 32, 18, 32, 18, -24, -18, -24, -18, 32, -24, 32 )
+
+[node name="Collider" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -3.75 )
+scale = Vector2( 0.78125, 0.9375 )
+polygon = PoolVector2Array( -30.72, -21.6, 30.72, -21.6, 30.72, 29.6, 23.04, 29.6, 23.04, -15.2, -23.04, -15.2, -23.04, 29.6, -30.72, 29.6 )
