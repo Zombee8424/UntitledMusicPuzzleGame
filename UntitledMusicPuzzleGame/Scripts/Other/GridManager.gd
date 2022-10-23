@@ -17,5 +17,5 @@ func _draw() -> void:
 		draw_line(Vector2(0, v_line_pos), Vector2(screen_size.x, v_line_pos), grid_line_colour, grid_line_size);
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	update();
