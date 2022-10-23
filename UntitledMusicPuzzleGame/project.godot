@@ -63,6 +63,7 @@ run/main_scene="res://Scenes/Other/Game.tscn"
 
 SynthManager="*res://Scripts/Autoload/SynthManager.gd"
 EntityManager="*res://Scripts/Autoload/EntityManager.gd"
+GameState="*res://Scripts/Autoload/GameState.gd"
 
 [display]
 

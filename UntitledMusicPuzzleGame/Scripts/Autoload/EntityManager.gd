@@ -1,6 +1,5 @@
 extends Node
 
-var entities_enabled: bool = false setget setter_entities_enabled;
 var grid_size: float;
 
 export var node_types: Dictionary = {
@@ -11,25 +10,16 @@ export var node_types: Dictionary = {
 var build_node: Node2D;
 
 
-func setter_entities_enabled(value: bool) -> void:
-	entities_enabled = value;
-	
-	for entity in get_tree().get_nodes_in_group("Entities"):
-		assert(entity is Entity, 'Entity "' + entity.name + '" is not of type Entity, but is in Entities group');
-		entity.enabled = value;
-
-
 func _ready() -> void:
 	var grid_manager: Node2D = get_tree().current_scene.get_node("GridManager");
 	assert(grid_manager != null, "Level missing grid manager");
 	grid_size = grid_manager.grid_size;
+	
+	GameState.connect("run_started", self, "_on_run_start");
+	GameState.connect("run_stopped", self, "_on_run_stop");
 
 
 func _physics_process(_delta: float) -> void:
-	if (Input.is_action_just_pressed("space")):
-		if (entities_enabled == true or (entities_enabled == false and build_node == null)):
-			self.entities_enabled = !entities_enabled;
-	
 	if (build_node != null):
 		build_node.global_position = get_mouse_grid_pos();
 		
@@ -47,6 +37,22 @@ func _physics_process(_delta: float) -> void:
 			set_build_node(null, "block");
 		elif (Input.is_key_pressed(KEY_3)):
 			set_build_node(null, "mover");
+		else:
+			return;
+			
+		GameState.is_run_active = false;
+
+
+func _on_run_start() -> void:
+	for entity in get_tree().get_nodes_in_group("Entities"):
+		if entity is BeaterSpawn:
+			entity.spawn_beater();
+
+
+func _on_run_stop() -> void:
+	for entity in get_tree().get_nodes_in_group("Entities"):
+		if entity is Beater:
+			entity.call_deferred("queue_free");
 
 
 func set_build_node(node: Node2D = null, node_type: String = "", create_node: bool = true) -> void:
@@ -61,9 +67,6 @@ func set_build_node(node: Node2D = null, node_type: String = "", create_node: bo
 	else:
 		node.global_position = get_mouse_grid_pos();
 		build_node = node;
-		
-	build_node.modulate = Color.white;
-	self.entities_enabled = false;
 
 
 func is_entity_at_position(check_position: Vector2) -> bool:
