@@ -1,5 +1,5 @@
-extends Entity
 class_name BeaterSpawn
+extends Entity
 
 
 export(String, FILE) var beater_path: String;

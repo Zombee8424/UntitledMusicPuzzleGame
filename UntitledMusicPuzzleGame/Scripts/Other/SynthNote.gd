@@ -1,7 +1,9 @@
 extends AudioStreamPlayer
 
+
 var note_timer: Timer;
 var volume_control: AnimationPlayer;
+
 
 func init(synth_wave: AudioStreamMP3, note_pitch_scale: float, note_length: float) -> void:
 	note_timer = get_node("NoteTimer");
@@ -14,6 +16,7 @@ func init(synth_wave: AudioStreamMP3, note_pitch_scale: float, note_length: floa
 	
 	note_timer.start(note_length);
 	assert(note_timer.connect("timeout", self, "trigger_stop") == OK);
+
 
 func trigger_stop() -> void:
 	volume_control.play("Stop");

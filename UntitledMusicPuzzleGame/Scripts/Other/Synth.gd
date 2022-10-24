@@ -1,8 +1,8 @@
+class_name Synth
 extends Node2D
 
-class_name Synth
 
-var mid_octave_freq: Dictionary = {
+const mid_octave_freq: Dictionary = {
 	"C" : 261.63,
 	"C#" : 277.18,
 	"D" : 293.66,
@@ -19,6 +19,7 @@ var mid_octave_freq: Dictionary = {
 
 export var synth_wave: AudioStreamMP3;
 export(String, FILE) var synth_note_path: String;
+
 
 func play_note(note_name: String, note_octave: int, note_length: float) -> void:
 	var note_pitch_scale = (mid_octave_freq[note_name] * pow(2, note_octave-4)) / mid_octave_freq["C"];

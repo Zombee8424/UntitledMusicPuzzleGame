@@ -1,2 +1,2 @@
-extends RigidBody2D
 class_name Entity
+extends RigidBody2D

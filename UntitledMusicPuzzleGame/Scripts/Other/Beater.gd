@@ -1,2 +1,2 @@
-extends Entity
 class_name Beater
+extends Entity

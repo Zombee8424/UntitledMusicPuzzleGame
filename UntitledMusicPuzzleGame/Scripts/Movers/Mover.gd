@@ -1,12 +1,11 @@
-extends Entity
 class_name Mover
+extends Entity
 
 
 export var width: float;
 
 var sprite: Sprite;
 var collider: CollisionShape2D;
-
 var is_new: bool = true;
 
 
