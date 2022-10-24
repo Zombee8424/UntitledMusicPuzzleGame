@@ -15,8 +15,8 @@ func _ready() -> void:
 	assert(grid_manager != null, "Level missing grid manager");
 	grid_size = grid_manager.grid_size;
 	
-	GameState.connect("run_started", self, "_on_run_start");
-	GameState.connect("run_stopped", self, "_on_run_stop");
+	assert(GameState.connect("run_started", self, "_on_run_start") == OK, "Connection Failed");
+	assert(GameState.connect("run_stopped", self, "_on_run_stop") == OK, "Connection Failed");
 
 
 func _physics_process(_delta: float) -> void:
