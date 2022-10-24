@@ -18,4 +18,7 @@ func setter_is_run_active(value: bool) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("space")):
+		if EntityManager.build_node != null:
+			return;
+		
 		self.is_run_active = !is_run_active;
