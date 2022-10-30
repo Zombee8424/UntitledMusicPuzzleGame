@@ -1,9 +1,6 @@
 class_name Mover
 extends Entity
 
-
-export var width: float;
-
 var sprite: Sprite;
 var collider: CollisionShape2D;
 var is_new: bool = true;
@@ -16,7 +13,7 @@ func _ready() -> void:
 	collider.shape = RectangleShape2D.new();
 
 	
-func set_mover_position(end_pos: Position2D) -> void:
+func set_mover_position(end_pos: Position2D, width: float) -> void:
 	# Var Setup
 	var line_length = (end_pos.position - position).length();
 	var mover_scale = Vector2(line_length, width);

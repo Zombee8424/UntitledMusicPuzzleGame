@@ -9,6 +9,7 @@ extents = Vector2( 8, 8 )
 
 [node name="MoverContainer" type="Node2D"]
 script = ExtResource( 3 )
+width = 16.0
 
 [node name="EndPos" type="Position2D" parent="."]
 position = Vector2( 8, 0 )
@@ -17,9 +18,12 @@ __meta__ = {
 }
 
 [node name="Mover" type="RigidBody2D" parent="." groups=["Entities"]]
+collision_layer = 2
+collision_mask = 3
 mode = 3
+contacts_reported = 999999
+contact_monitor = true
 script = ExtResource( 1 )
-width = 16.0
 
 [node name="Sprite" type="Sprite" parent="Mover"]
 modulate = Color( 0, 0, 0, 1 )
