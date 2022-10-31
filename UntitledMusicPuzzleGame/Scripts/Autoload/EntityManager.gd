@@ -25,9 +25,11 @@ func _physics_process(_delta: float) -> void:
 		
 		if Input.is_action_just_pressed("left_click"):
 			if is_build__pos_valid():
-				if build_node is Mover and build_node.is_new == true:
-					build_node.is_new = false;
-					set_build_node(build_node.get_parent().end_pos, "", false);
+				if build_node is Mover:
+					var parent = build_node.get_parent();
+					if parent.is_new:
+						parent.is_new = false;
+						set_build_node(parent.end_pos, "", false);
 				else:
 					build_node = null;
 		elif Input.is_key_pressed(KEY_ESCAPE):
@@ -58,6 +60,7 @@ func set_build_node(node: Node2D = null, node_type: String = "", create_node: bo
 	if node is MoverContainer:
 		node.global_position = Vector2.ZERO;
 		build_node = node.get_node("Mover");
+		build_node.global_position = get_mouse_grid_pos()
 	else:
 		node.global_position = get_mouse_grid_pos();
 		build_node = node;

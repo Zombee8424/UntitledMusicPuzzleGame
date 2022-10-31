@@ -3,7 +3,6 @@ extends Entity
 
 var sprite: Sprite;
 var collider: CollisionShape2D;
-var is_new: bool = true;
 
 
 func _ready() -> void:
