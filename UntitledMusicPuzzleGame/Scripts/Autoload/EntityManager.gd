@@ -14,9 +14,6 @@ func _ready() -> void:
 	var grid_manager: Node2D = get_tree().current_scene.get_node("GridManager");
 	assert(grid_manager != null, "Level missing grid manager");
 	grid_size = grid_manager.grid_size;
-	
-	assert(GameState.connect("run_started", self, "_on_run_start") == OK, "Connection Failed");
-	assert(GameState.connect("run_stopped", self, "_on_run_stop") == OK, "Connection Failed");
 
 
 func _physics_process(_delta: float) -> void:
@@ -25,13 +22,7 @@ func _physics_process(_delta: float) -> void:
 		
 		if Input.is_action_just_pressed("left_click"):
 			if is_build__pos_valid():
-				if build_node is Mover:
-					var parent = build_node.get_parent();
-					if parent.is_new:
-						parent.is_new = false;
-						set_build_node(parent.end_pos, "", false);
-				else:
-					build_node = null;
+				place_build_node();
 		elif Input.is_key_pressed(KEY_ESCAPE):
 			if build_node.get_parent() is MoverContainer:
 				build_node.get_parent().queue_free();
@@ -66,6 +57,19 @@ func set_build_node(node: Node2D = null, node_type: String = "", create_node: bo
 		build_node = node;
 
 
+func place_build_node() -> void:
+	if build_node is Mover:
+		var parent = build_node.get_parent();
+		if parent.is_new:
+			parent.is_new = false;
+			set_build_node(parent.end_pos, "", false);
+	else:
+		if build_node is BeaterSpawn:
+			assert(GameState.connect("run_started", build_node, "_on_run_start") == OK, "Connection Failed");
+
+		build_node = null;
+
+
 func is_build__pos_valid() -> bool:
 	var test_node = build_node;
 	if test_node is Position2D and test_node.get_parent() is MoverContainer:
@@ -92,15 +96,3 @@ func get_mouse_grid_pos() -> Vector2:
 		stepify(mouse_pos.x - grid_size/2, grid_size) + grid_size/2,
 		stepify(mouse_pos.y - grid_size/2, grid_size) + grid_size/2
 	);
-
-
-func _on_run_start() -> void:
-	for entity in get_tree().get_nodes_in_group("Entities"):
-		if entity is BeaterSpawn:
-			entity.spawn_beater();
-
-
-func _on_run_stop() -> void:
-	for entity in get_tree().get_nodes_in_group("Entities"):
-		if entity is Beater:
-			entity.call_deferred("queue_free");
