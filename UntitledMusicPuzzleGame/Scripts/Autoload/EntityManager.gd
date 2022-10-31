@@ -66,6 +66,7 @@ func place_build_node() -> void:
 	else:
 		if build_node is BeaterSpawn:
 			assert(GameState.connect("run_started", build_node, "_on_run_start") == OK, "Connection Failed");
+			assert(GameState.connect("run_stopped", build_node, "_on_run_stop") == OK, "Connection Failed");
 
 		build_node = null;
 

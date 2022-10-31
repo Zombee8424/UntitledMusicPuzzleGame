@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Other/BeaterSpawn.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30.72, 25.6 )
 
 [node name="BeaterSpawn" type="RigidBody2D" groups=["Entities"]]
 collision_layer = 2
@@ -16,7 +19,7 @@ scale = Vector2( 1, 0.75 )
 color = Color( 0.333333, 0.333333, 0.333333, 1 )
 polygon = PoolVector2Array( -24, -32, 24, -32, 24, 0.067688, 24, 32, 18, 32, 18, -24, -18, -24, -18, 32, -24, 32 )
 
-[node name="Collider" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0, -3.75 )
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 9.53674e-07, 0 )
 scale = Vector2( 0.78125, 0.9375 )
-polygon = PoolVector2Array( -30.72, -21.6, 30.72, -21.6, 30.72, 29.6, 23.04, 29.6, 23.04, -15.2, -23.04, -15.2, -23.04, 29.6, -30.72, 29.6 )
+shape = SubResource( 1 )
