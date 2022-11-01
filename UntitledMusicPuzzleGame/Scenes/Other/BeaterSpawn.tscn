@@ -12,6 +12,7 @@ mode = 3
 contacts_reported = 999999
 contact_monitor = true
 script = ExtResource( 1 )
+config_options = [ "delete" ]
 beater_path = "res://Scenes/Other/Beater.tscn"
 
 [node name="Sprite" type="Polygon2D" parent="."]

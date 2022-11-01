@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Other/Synth.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Other/GridManager.gd" type="Script" id=2]
 [ext_resource path="res://Audio/SineWave.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Scripts/Other/EntityConfigurator.gd" type="Script" id=4]
 
 [node name="Game" type="Node2D"]
+
+[node name="EntityConfigurator" type="CanvasLayer" parent="."]
+script = ExtResource( 4 )
+
+[node name="ConfigMenu" type="VBoxContainer" parent="EntityConfigurator"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
 
 [node name="GridManager" type="Node2D" parent="."]
 script = ExtResource( 2 )

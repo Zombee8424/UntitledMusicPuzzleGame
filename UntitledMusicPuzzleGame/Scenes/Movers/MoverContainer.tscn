@@ -23,6 +23,7 @@ mode = 3
 contacts_reported = 999999
 contact_monitor = true
 script = ExtResource( 1 )
+config_options = [ "delete" ]
 
 [node name="Sprite" type="Sprite" parent="Mover"]
 modulate = Color( 0, 0, 0, 1 )
