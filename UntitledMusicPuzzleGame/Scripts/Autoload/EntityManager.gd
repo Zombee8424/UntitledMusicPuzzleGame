@@ -21,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 		build_node.global_position = get_mouse_grid_pos();
 		
 		if Input.is_action_just_pressed("left_click"):
-			if is_build__pos_valid():
+			if is_build_pos_valid():
 				place_build_node();
 		elif Input.is_key_pressed(KEY_ESCAPE):
 			if build_node.get_parent() is MoverContainer:
@@ -71,7 +71,7 @@ func place_build_node() -> void:
 		build_node = null;
 
 
-func is_build__pos_valid() -> bool:
+func is_build_pos_valid() -> bool:
 	var test_node = build_node;
 	if test_node is Position2D and test_node.get_parent() is MoverContainer:
 		test_node = test_node.get_parent().mover;
