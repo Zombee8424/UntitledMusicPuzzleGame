@@ -15,6 +15,10 @@ func _ready() -> void:
 	mover = get_node("Mover");
 	end_pos = get_node("EndPos");
 	
+	# Moves the mover to the grid mouse position as soon as it is ready.
+	# Without this line, the mover is visible at (0, 0) for a single frame.
+	# Cannot be done in EntityManager as the mover is not yet in the scene.
+	mover.global_position = EntityManager.get_mouse_grid_pos();
 	set_cached_positions();
 
 

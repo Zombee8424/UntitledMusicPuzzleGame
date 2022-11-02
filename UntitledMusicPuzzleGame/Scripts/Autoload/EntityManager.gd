@@ -51,7 +51,6 @@ func set_build_node(node: Node2D = null, node_type: String = "", create_node: bo
 	if node is MoverContainer:
 		node.global_position = Vector2.ZERO;
 		build_node = node.get_node("Mover");
-		build_node.global_position = get_mouse_grid_pos();
 	else:
 		node.global_position = get_mouse_grid_pos();
 		build_node = node;
