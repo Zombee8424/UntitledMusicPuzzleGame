@@ -5,7 +5,7 @@ var grid_size: float;
 var node_types: Dictionary = {
 	"beater_spawn" : "res://Scenes/Other/BeaterSpawn.tscn",
 	"block" : "res://Scenes/Blocks/Block.tscn",
-	"mover" : "res://Scenes/Movers/MoverContainer.tscn",
+	"mover_container" : "res://Scenes/Movers/MoverContainer.tscn",
 };
 var build_node: Node2D;
 	
@@ -36,6 +36,8 @@ func _physics_process(_delta: float) -> void:
 			set_build_node(null, "block");
 		elif Input.is_key_pressed(KEY_3):
 			set_build_node(null, "mover");
+		elif Input.is_key_pressed(KEY_4):
+			set_build_node(null, "bouncer");
 		else:
 			return;
 			
@@ -45,12 +47,17 @@ func _physics_process(_delta: float) -> void:
 func set_build_node(node: Node2D = null, node_type: String = "", create_node: bool = true) -> void:
 	if create_node == true:
 		assert(node == null and node_type != "", "Invalid parameters for creating node");
-		node = load(node_types[node_type]).instance();
+		if node_type in ["mover", "bouncer"]:
+			node = load(node_types["mover_container"]).instance();
+			assert(node_type in node.mover_types.keys(), "Mover Type '" + node_type + "' Does Not Exist");
+		else:
+			assert(node_type in node_types.keys(), "Node Type '" + node_type + "' Does Not Exist");
+			node = load(node_types[node_type]).instance();
 		get_tree().current_scene.call_deferred("add_child", node, true);
 	
 	if node is MoverContainer:
 		node.global_position = Vector2.ZERO;
-		build_node = node.get_node("Mover");
+		build_node = node.set_mover_type(node_type);
 	else:
 		node.global_position = get_mouse_grid_pos();
 		build_node = node;

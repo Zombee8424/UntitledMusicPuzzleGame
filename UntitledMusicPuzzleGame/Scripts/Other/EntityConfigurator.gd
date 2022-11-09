@@ -3,7 +3,8 @@ extends CanvasLayer
 
 var config_menu: VBoxContainer;
 export var config_buttons: Dictionary = {
-	"delete" : "res://Scenes/UI/EntityConfigButtons/EntityConfig_Delete.tscn"
+	"delete" : "res://Scenes/UI/EntityConfigButtons/EntityConfig_Delete.tscn",
+	"flip_direction" : "res://Scenes/UI/EntityConfigButtons/EntityConfig_FlipDirection.tscn",
 };
 
 

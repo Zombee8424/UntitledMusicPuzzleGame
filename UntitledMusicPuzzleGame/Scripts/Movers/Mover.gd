@@ -1,6 +1,10 @@
 class_name Mover
 extends Entity
 
+
+signal mover_position_updated;
+
+
 var sprite: Sprite;
 var collider: CollisionShape2D;
 
@@ -28,3 +32,5 @@ func set_mover_position(end_pos: Position2D, width: float) -> void:
 	
 	# Rotation
 	look_at(end_pos.global_position);
+	
+	emit_signal("mover_position_updated");

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/UI/EntityConfigButtons/EntityConfig_FlipDirection.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/FlipIcon.png" type="Texture" id=2]
+
+[node name="EntityConfig_FlipDirection" type="Button"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

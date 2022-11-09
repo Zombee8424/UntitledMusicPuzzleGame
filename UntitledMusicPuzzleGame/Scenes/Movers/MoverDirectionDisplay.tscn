@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="MoverDirectionDisplay" type="Node2D"]
+
+[node name="Sprite" type="Polygon2D" parent="."]
+position = Vector2( 0, 8 )
+scale = Vector2( 0.994163, 0.991332 )
+color = Color( 0, 0, 0, 0.392157 )
+polygon = PoolVector2Array( -16, -4, 0, -4, 16, -4, 0, -12 )

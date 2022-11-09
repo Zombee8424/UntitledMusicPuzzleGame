@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Blocks/Block.gd"
 }, {
+"base": "Mover",
+"class": "Bouncer",
+"language": "GDScript",
+"path": "res://Scripts/Movers/Bouncer.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Entity",
 "language": "GDScript",
@@ -53,6 +58,7 @@ _global_script_class_icons={
 "Beater": "",
 "BeaterSpawn": "",
 "Block": "",
+"Bouncer": "",
 "Entity": "",
 "EntityConfigButton": "",
 "Mover": "",

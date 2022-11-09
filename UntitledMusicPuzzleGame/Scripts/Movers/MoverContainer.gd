@@ -9,16 +9,14 @@ var end_pos: Position2D;
 var cached_mover_pos: Vector2;
 var cached_end_pos: Vector2;
 var is_new: bool = true;
-
+var mover_types: Dictionary = {
+	"mover" : "res://Scenes/Movers/Mover.tscn",
+	"bouncer" : "res://Scenes/Movers/Bouncer.tscn",
+}
 
 func _ready() -> void:
-	mover = get_node("Mover");
 	end_pos = get_node("EndPos");
-	
-	# Moves the mover to the grid mouse position as soon as it is ready.
-	# Without this line, the mover is visible at (0, 0) for a single frame.
-	# Cannot be done in EntityManager as the mover is not yet in the scene.
-	mover.global_position = EntityManager.get_mouse_grid_pos();
+
 	set_cached_positions();
 
 
@@ -37,9 +35,12 @@ func _physics_process(_delta: float) -> void:
 
 
 func _draw() -> void:
-	draw_circle(mover.position, width/2, Color.black);
+	if mover == null:
+		return;
+
+	draw_circle(mover.position, width/2, mover.sprite.modulate);
 	if !is_new:
-		draw_circle(end_pos.position, width/2, Color.black);
+		draw_circle(end_pos.position, width/2, mover.sprite.modulate);
 
 
 func set_cached_positions() -> void:
@@ -48,3 +49,17 @@ func set_cached_positions() -> void:
 	
 	cached_mover_pos = mover.global_position;
 	cached_end_pos = end_pos.global_position;
+
+
+func set_mover_type(mover_type: String) -> RigidBody2D:
+	assert(mover_type in mover_types.keys(), "Mover Types '" + mover_type + "' Does Not Exist");
+
+	mover = load(mover_types[mover_type]).instance();
+	mover.global_position = EntityManager.get_mouse_grid_pos();
+	add_child(mover, true);
+
+	return mover;
+
+
+func get_mover_mid_point() -> Vector2:
+	return mover.global_position + ((end_pos.global_position - mover.global_position) / 2);
