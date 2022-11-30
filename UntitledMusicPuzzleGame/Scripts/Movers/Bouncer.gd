@@ -4,7 +4,6 @@ extends Mover
 
 export var bounce_force: float = 50;
 var bounce_direction: Vector2 = Vector2.UP;
-var bounce_angle: float;
 var direction_display: Node2D;
 
 
@@ -20,7 +19,7 @@ func _on_body_entered(body: Node) -> void:
 		return;
 	
 	body = body as RigidBody2D;
-	body.apply_central_impulse((Vector2.UP.rotated(bounce_angle)) * bounce_force);
+	body.apply_central_impulse(Vector2.UP * bounce_force);
 
 
 func flip_direction() -> void:
@@ -43,7 +42,6 @@ func set_direction_display_angle() -> void:
 		angle -= 180;
 	
 	direction_display.global_rotation_degrees = angle;
-	bounce_angle = angle;
 
 
 func _on_mover_position_update() -> void:
